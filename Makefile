@@ -2,7 +2,7 @@
 
 .PHONY: all
 
-all: ubuntu18.04 ubuntu16.04 ubuntu14.04 debian9 debian8 centos7 amzn2 amzn1
+all: ubuntu18.04 ubuntu16.04 ubuntu14.04 debianbuster debian9 debian8 centos7 amzn2 amzn1
 
 # Build all packages for a specific distribution.
 ubuntu18.04: runtime-ubuntu18.04 hook-ubuntu18.04
@@ -10,6 +10,8 @@ ubuntu18.04: runtime-ubuntu18.04 hook-ubuntu18.04
 ubuntu16.04: runtime-ubuntu16.04 hook-ubuntu16.04
 
 ubuntu14.04: runtime-ubuntu14.04 hook-ubuntu14.04
+
+debianbuster: runtime-debianbuster hook-debianbuster
 
 debian9: runtime-debian9 hook-debian9
 
@@ -39,6 +41,9 @@ runtime-%: base-%
 
 %-runtime-ubuntu14.04: base-ubuntu14.04
 	make -C $(CURDIR)/runtime $*-ubuntu14.04
+
+%-runtime-debianbuster: base-debianbuster
+	make -C $(CURDIR)/runtime $*-debianbuster
 
 %-runtime-debian9: base-debian9
 	make -C $(CURDIR)/runtime $*-debian9
